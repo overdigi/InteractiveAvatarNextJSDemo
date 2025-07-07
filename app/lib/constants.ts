@@ -1,23 +1,19 @@
 export const AVATARS = [
   {
-    avatar_id: "Ann_Therapist_public",
-    name: "Ann Therapist",
+    avatar_id: "3b1633a466c44379bf6b5a268472758B",
+    name: "專業男性助理",
+    description: "戴眼鏡的專業形象，提供可靠的協助服務",
+    gender: "male",
+    voice_id: "be13dd1748a444ffa460ccb26ba613d9",
+    image_url: "https://ai3corp.github.io/WILL/",
   },
   {
-    avatar_id: "Shawn_Therapist_public",
-    name: "Shawn Therapist",
-  },
-  {
-    avatar_id: "Bryan_FitnessCoach_public",
-    name: "Bryan Fitness Coach",
-  },
-  {
-    avatar_id: "Dexter_Doctor_Standing2_public",
-    name: "Dexter Doctor Standing",
-  },
-  {
-    avatar_id: "Elenora_IT_Sitting_public",
-    name: "Elenora Tech Expert",
+    avatar_id: "4158cf2ef854dcc856aacb1c47dbb0c",
+    name: "親切女性助理",
+    description: "友善親切的形象，溫暖的互動體驗",
+    gender: "female",
+    voice_id: "a9f1b685f79f4bda9a8493430cafce83",
+    image_url: "https://ai3corp.github.io/CRCH/",
   },
 ];
 

@@ -1,0 +1,52 @@
+---
+description: HeyGen Streaming Avatar SDK usage patterns and best practices
+---
+
+# HeyGen Streaming Avatar SDK 使用指南
+
+## SDK 匯入和設定
+```typescript
+import {
+  AvatarQuality,
+  StreamingEvents,
+  VoiceChatTransport,
+  VoiceEmotion,
+  StartAvatarRequest,
+  STTProvider,
+  ElevenLabsModel,
+} from "@heygen/streaming-avatar";
+```
+
+## 核心配置模式
+- 使用 [app/lib/constants.ts](mdc:app/lib/constants.ts) 中定義的預設配置
+- Avatar 品質: `AvatarQuality.Low|Medium|High`
+- 語音聊天傳輸: `VoiceChatTransport.WEBSOCKET|WEBRTC`
+- STT 提供者: `STTProvider.DEEPGRAM|AZURE`
+
+## 事件處理模式
+必須監聽的關鍵事件：
+- `StreamingEvents.AVATAR_START_TALKING` - Avatar 開始說話
+- `StreamingEvents.AVATAR_STOP_TALKING` - Avatar 停止說話
+- `StreamingEvents.STREAM_READY` - 串流準備就緒
+- `StreamingEvents.STREAM_DISCONNECTED` - 串流斷線
+- `StreamingEvents.USER_START|STOP` - 用戶說話狀態
+- `StreamingEvents.USER_END_MESSAGE` - 用戶訊息結束
+
+## 會話生命週期
+1. **取得 Access Token** - 透過 `/api/get-access-token` 端點
+2. **初始化 Avatar** - 使用 `initAvatar(token)`
+3. **設定事件監聽器** - 在啟動會話前設定
+4. **啟動會話** - 使用 `startAvatar(config)`
+5. **管理串流** - 處理視訊串流和音訊
+6. **清理資源** - 在元件卸載時呼叫 `stopAvatar()`
+
+## 錯誤處理
+- 所有 SDK 呼叫都應包裝在 try-catch 中
+- 記錄詳細的錯誤資訊到 console
+- 優雅處理網路中斷和 API 限制
+- 提供使用者友善的錯誤訊息
+
+## 環境變數需求
+- `HEYGEN_API_KEY` - HeyGen Enterprise API 金鑰
+- `NEXT_PUBLIC_BASE_API_URL` - API 基礎 URL
+- `OPENAI_API_KEY` - OpenAI API 金鑰（可選）

@@ -1,0 +1,43 @@
+---
+globs: *.ts,*.tsx
+---
+
+# TypeScript 編碼規範
+
+## 基本原則
+- 使用英文編寫所有程式碼和文件
+- 總是聲明變數和函式的類型（參數和返回值）
+- 避免使用 `any`，創建必要的類型定義
+- 使用 JSDoc 為公共類別和方法添加文件
+- 函式內不留空行
+- 每個檔案一個匯出
+
+## 命名規範
+- **類別**: 使用 PascalCase
+- **變數、函式、方法**: 使用 camelCase  
+- **檔案和目錄**: 使用 kebab-case
+- **環境變數**: 使用 UPPERCASE
+- **布林變數**: 使用動詞開頭 (isLoading, hasError, canDelete)
+- **函式**: 以動詞開頭
+- **完整單字**: 避免縮寫，使用正確拼寫
+
+## 函式設計
+- 編寫短函式，單一目的，少於 20 行指令
+- 使用早期檢查和返回避免嵌套
+- 使用高階函式 (map, filter, reduce)
+- 簡單函式使用箭頭函式（少於 3 行指令）
+- 複雜函式使用具名函式
+- 使用預設參數值而非檢查 null 或 undefined
+
+## React 特定規範
+- 元件使用 PascalCase 命名
+- 使用 TypeScript interface 定義 props
+- 優先使用函式元件和 hooks
+- 正確處理 useEffect 依賴陣列
+- 使用 React.memo 優化效能（當需要時）
+
+## 類型定義
+- 為複雜物件創建 interface 或 type
+- 使用 readonly 標記不變資料
+- 使用 as const 標記字面量常數
+- 優先使用組合而非繼承

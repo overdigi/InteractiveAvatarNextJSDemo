@@ -1,0 +1,41 @@
+---
+alwaysApply: true
+---
+
+# HeyGen Interactive Avatar NextJS 專案結構指南
+
+## 專案概述
+這是一個使用 HeyGen Streaming Avatar SDK 的 NextJS 應用程式，讓用戶可以與 AI Avatar 進行即時互動聊天。
+
+## 核心檔案結構
+
+### 主要入口點
+- [app/page.tsx](mdc:app/page.tsx) - 應用程式主頁面
+- [app/layout.tsx](mdc:app/layout.tsx) - 根布局設定
+- [components/InteractiveAvatar.tsx](mdc:components/InteractiveAvatar.tsx) - 主要的 Avatar 互動元件
+
+### API 路由
+- [app/api/get-access-token/route.ts](mdc:app/api/get-access-token/route.ts) - 獲取 HeyGen API access token
+
+### 核心元件目錄
+- `components/AvatarConfig/` - Avatar 配置相關元件
+- `components/AvatarSession/` - Avatar 會話控制元件
+- `components/logic/` - 業務邏輯和狀態管理
+
+### 配置檔案
+- [app/lib/constants.ts](mdc:app/lib/constants.ts) - 專案常數定義
+- [.env](mdc:.env) - 環境變數配置
+- [package.json](mdc:package.json) - 專案依賴和腳本
+
+## 主要功能
+1. **Avatar 配置** - 選擇不同的 Avatar、語音和品質設定
+2. **即時聊天** - 支援語音和文字兩種聊天模式
+3. **會話管理** - Avatar 會話的啟動、停止和狀態管理
+4. **訊息歷史** - 聊天記錄的顯示和管理
+
+## 技術堆疊
+- **框架**: Next.js 15+ with App Router
+- **UI**: React 19+, Tailwind CSS, Radix UI
+- **Avatar SDK**: @heygen/streaming-avatar
+- **狀態管理**: React hooks + ahooks
+- **語言**: TypeScript
