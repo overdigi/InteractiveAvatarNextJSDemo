@@ -1,14 +1,14 @@
 "use client";
 
-import InteractiveAvatar from "@/components/InteractiveAvatar";
+import { StreamingAvatarProvider } from "@/components/logic";
+import MinimalTextReader from "@/components/MinimalTextReader";
+
 export default function App() {
   return (
-    <div className="w-screen h-screen flex flex-col">
-      <div className="w-[900px] flex flex-col items-start justify-start gap-5 mx-auto pt-4 pb-20">
-        <div className="w-full">
-          <InteractiveAvatar />
-        </div>
-      </div>
+    <div className="min-h-screen bg-zinc-950 py-8">
+      <StreamingAvatarProvider basePath={process.env.NEXT_PUBLIC_BASE_API_URL}>
+        <MinimalTextReader />
+      </StreamingAvatarProvider>
     </div>
   );
 }
