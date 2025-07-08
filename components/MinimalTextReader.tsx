@@ -56,12 +56,23 @@ export default function MinimalTextReader() {
 
   const mediaStream = useRef<HTMLVideoElement>(null);
 
-  async function fetchAccessToken() {
+  async function fetchAccessToken(avatarId: string) {
     try {
       const response = await fetch("/api/get-access-token", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ avatarId }),
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const token = await response.text();
+
+      console.log(`Token fetched for ${avatarId}`);
 
       return token;
     } catch (error) {
@@ -75,7 +86,7 @@ export default function MinimalTextReader() {
 
     setIsLoading(true);
     try {
-      const token = await fetchAccessToken();
+      const token = await fetchAccessToken(selectedAvatarId);
       const avatar = initAvatar(token);
       const config = createConfig(selectedAvatarId);
 

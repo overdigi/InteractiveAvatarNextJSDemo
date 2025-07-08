@@ -3,13 +3,15 @@ export const AVATARS = [
     avatar_id: "bc13dd17488a44ffa46f0ccb26ba613a",
     name: "WILL",
     gender: "male",
-    voice_id: "3b1633a466c44379bf8b5a2884727588", // 您可以指定想要的語音 ID
+    voice_id: "3b1633a466c44379bf8b5a2884727588",
+    api_key_env: "HEYGEN_API_KEY_WILL", // 環境變數名稱
   },
   {
     avatar_id: "a9f1b685f79f4bda9a8493430cafce83",
     name: "CRCH",
     gender: "female",
-    voice_id: "4158cf2ef85d4ccc856aacb1c47dbb0c", // 您可以指定想要的語音 ID
+    voice_id: "4158cf2ef85d4ccc856aacb1c47dbb0c",
+    api_key_env: "HEYGEN_API_KEY_CRCH", // 環境變數名稱
   },
 ];
 
