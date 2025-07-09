@@ -1,0 +1,73 @@
+---
+globs: components/**/*.tsx
+---
+
+# UI 元件設計規範
+
+## 元件架構原則
+
+### 元件組織
+- 每個元件一個檔案，使用 PascalCase 命名
+- 相關元件放在同一目錄下（如 `AvatarConfig/`, `AvatarSession/`）
+- 共用元件放在根 `components/` 目錄
+- 業務邏輯分離到 `logic/` 目錄
+
+### Props 設計
+```typescript
+interface ComponentProps {
+  // 必需屬性在前
+  title: string;
+  onAction: (data: ActionData) => void;
+  
+  // 可選屬性在後  
+  className?: string;
+  disabled?: boolean;
+  
+  // 子元件最後
+  children?: React.ReactNode;
+}
+```
+
+### 狀態管理
+- 使用 `useState` 處理本地狀態
+- 使用 `useEffect` 處理副作用，正確設定依賴陣列
+- 使用 `useMemoizedFn` (ahooks) 優化函式記憶化
+- 使用 `useUnmount` (ahooks) 處理清理邏輯
+
+## 樣式指南
+
+### Tailwind CSS 使用
+- 優先使用 Tailwind utility classes
+- 使用語義化的顏色系統 (zinc-, blue-, etc.)
+- 響應式設計使用 breakpoint prefixes (sm:, md:, lg:)
+- 暗色主題作為預設設計
+
+### 常用樣式模式
+```typescript
+// 按鈕樣式
+"px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg"
+
+// 輸入框樣式  
+"w-full text-white text-sm bg-zinc-700 py-2 px-6 rounded-lg outline-none"
+
+// 卡片容器
+"flex flex-col rounded-xl bg-zinc-900 overflow-hidden"
+```
+
+## 互動設計
+
+### Loading 狀態
+- 使用 [components/Icons.tsx](mdc:components/Icons.tsx) 中的 `LoadingIcon`
+- 提供清楚的載入指示器
+- 在非同步操作期間禁用互動元素
+
+### 錯誤處理
+- 顯示使用者友善的錯誤訊息
+- 使用醒目但不刺眼的錯誤樣式
+- 提供重試或替代操作選項
+
+### 無障礙設計
+- 使用語義化的 HTML 標籤
+- 提供適當的 ARIA 標籤
+- 確保鍵盤導航支援
+- 維持足夠的顏色對比度

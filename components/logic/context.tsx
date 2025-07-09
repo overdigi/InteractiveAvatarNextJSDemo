@@ -22,6 +22,15 @@ export interface Message {
   content: string;
 }
 
+export type ChatMode = "voice" | "text";
+
+export interface AvatarSelectionState {
+  selectedAvatarId: string;
+  selectedChatMode: ChatMode | null;
+  isAvatarSelected: boolean;
+  isChatModeSelected: boolean;
+}
+
 type StreamingAvatarContextProps = {
   avatarRef: React.MutableRefObject<StreamingAvatar | null>;
   basePath?: string;
@@ -61,6 +70,12 @@ type StreamingAvatarContextProps = {
 
   connectionQuality: ConnectionQuality;
   setConnectionQuality: (connectionQuality: ConnectionQuality) => void;
+
+  // Avatar selection state
+  avatarSelection: AvatarSelectionState;
+  setSelectedAvatarId: (avatarId: string) => void;
+  setSelectedChatMode: (mode: ChatMode | null) => void;
+  resetAvatarSelection: () => void;
 };
 
 const StreamingAvatarContext = React.createContext<StreamingAvatarContextProps>(
@@ -89,6 +104,17 @@ const StreamingAvatarContext = React.createContext<StreamingAvatarContextProps>(
     setIsAvatarTalking: () => {},
     connectionQuality: ConnectionQuality.UNKNOWN,
     setConnectionQuality: () => {},
+
+    // Avatar selection state
+    avatarSelection: {
+      selectedAvatarId: "",
+      selectedChatMode: null,
+      isAvatarSelected: false,
+      isChatModeSelected: false,
+    },
+    setSelectedAvatarId: () => {},
+    setSelectedChatMode: () => {},
+    resetAvatarSelection: () => {},
   },
 );
 
@@ -219,6 +245,32 @@ const useStreamingAvatarConnectionQualityState = () => {
   return { connectionQuality, setConnectionQuality };
 };
 
+const useStreamingAvatarSelectionState = () => {
+  const [selectedAvatarId, setSelectedAvatarId] = useState("");
+  const [selectedChatMode, setSelectedChatMode] = useState<ChatMode | null>(
+    null,
+  );
+
+  const avatarSelection: AvatarSelectionState = {
+    selectedAvatarId,
+    selectedChatMode,
+    isAvatarSelected: selectedAvatarId !== "",
+    isChatModeSelected: selectedChatMode !== null,
+  };
+
+  const resetAvatarSelection = () => {
+    setSelectedAvatarId("");
+    setSelectedChatMode(null);
+  };
+
+  return {
+    avatarSelection,
+    setSelectedAvatarId,
+    setSelectedChatMode,
+    resetAvatarSelection,
+  };
+};
+
 export const StreamingAvatarProvider = ({
   children,
   basePath,
@@ -233,6 +285,7 @@ export const StreamingAvatarProvider = ({
   const listeningState = useStreamingAvatarListeningState();
   const talkingState = useStreamingAvatarTalkingState();
   const connectionQualityState = useStreamingAvatarConnectionQualityState();
+  const selectionState = useStreamingAvatarSelectionState();
 
   return (
     <StreamingAvatarContext.Provider
@@ -245,6 +298,7 @@ export const StreamingAvatarProvider = ({
         ...listeningState,
         ...talkingState,
         ...connectionQualityState,
+        ...selectionState,
       }}
     >
       {children}

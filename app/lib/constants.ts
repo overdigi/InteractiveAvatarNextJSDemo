@@ -1,23 +1,19 @@
 export const AVATARS = [
   {
-    avatar_id: "Ann_Therapist_public",
-    name: "Ann Therapist",
+    avatar_id: "bc13dd17488a44ffa46f0ccb26ba613a",
+    name: "WILL",
+    gender: "male",
+    voice_id: "3b1633a466c44379bf8b5a2884727588",
+    api_key_env: "HEYGEN_API_KEY_WILL",
+    description: "專業男性助理",
   },
   {
-    avatar_id: "Shawn_Therapist_public",
-    name: "Shawn Therapist",
-  },
-  {
-    avatar_id: "Bryan_FitnessCoach_public",
-    name: "Bryan Fitness Coach",
-  },
-  {
-    avatar_id: "Dexter_Doctor_Standing2_public",
-    name: "Dexter Doctor Standing",
-  },
-  {
-    avatar_id: "Elenora_IT_Sitting_public",
-    name: "Elenora Tech Expert",
+    avatar_id: "a9f1b685f79f4bda9a8493430cafce83",
+    name: "CRCH",
+    gender: "female",
+    voice_id: "4158cf2ef85d4ccc856aacb1c47dbb0c",
+    api_key_env: "HEYGEN_API_KEY_CRCH",
+    description: "親切女性助理",
   },
 ];
 

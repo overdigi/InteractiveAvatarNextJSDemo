@@ -7,3 +7,17 @@ li {
   margin-left: 30px;
   padding: 2px;
 }
+
+/* 隱藏 Next.js 開發模式的左下角通知 */
+#__next-build-watcher,
+.__next-dev-overlay,
+nextjs-portal {
+  display: none !important;
+}
+
+/* 隱藏所有可能的 Next.js 開發指示器 */
+[data-nextjs-toast],
+[data-nextjs-dialog],
+[data-nextjs-dialog-overlay] {
+  display: none !important;
+}

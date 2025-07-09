@@ -1,9 +1,11 @@
 import { ToggleGroup, ToggleGroupItem } from "@radix-ui/react-toggle-group";
-import React from "react";
+import React, { useMemo } from "react";
 
 import { useVoiceChat } from "../logic/useVoiceChat";
+import { useTextChat } from "../logic/useTextChat";
 import { Button } from "../Button";
 import { useInterrupt } from "../logic/useInterrupt";
+import { useStreamingAvatarContext, MessageSender } from "../logic";
 
 import { AudioInput } from "./AudioInput";
 import { TextInput } from "./TextInput";
@@ -16,6 +18,23 @@ export const AvatarControls: React.FC = () => {
     stopVoiceChat,
   } = useVoiceChat();
   const { interrupt } = useInterrupt();
+  const { repeatMessage } = useTextChat();
+  const { messages } = useStreamingAvatarContext();
+
+  // 獲取最後一條 Avatar 消息
+  const lastAvatarMessage = useMemo(() => {
+    const avatarMessages = messages.filter(
+      (msg: any) => msg.sender === MessageSender.AVATAR,
+    );
+
+    return avatarMessages[avatarMessages.length - 1];
+  }, [messages]);
+
+  const handleRepeat = () => {
+    if (lastAvatarMessage) {
+      repeatMessage(lastAvatarMessage.content);
+    }
+  };
 
   return (
     <div className="flex flex-col gap-3 relative w-full items-center">
@@ -50,9 +69,21 @@ export const AvatarControls: React.FC = () => {
         </ToggleGroupItem>
       </ToggleGroup>
       {isVoiceChatActive || isVoiceChatLoading ? <AudioInput /> : <TextInput />}
-      <div className="absolute top-[-70px] right-3">
-        <Button className="!bg-zinc-700 !text-white" onClick={interrupt}>
-          Interrupt
+
+      {/* 控制按鈕組 */}
+      <div className="flex gap-2 mt-2">
+        <Button
+          className="!bg-blue-600 !text-white hover:!bg-blue-700 transition-colors"
+          disabled={!lastAvatarMessage}
+          onClick={handleRepeat}
+        >
+          🔄 Repeat
+        </Button>
+        <Button
+          className="!bg-red-600 !text-white hover:!bg-red-700 transition-colors"
+          onClick={interrupt}
+        >
+          ⏹️ 中斷
         </Button>
       </div>
     </div>
