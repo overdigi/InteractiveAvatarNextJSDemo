@@ -6,8 +6,8 @@
     }
   ],
   "env": {
-    "HEYGEN_API_KEY_WILL": "@heygen-api-key-will",
-    "HEYGEN_API_KEY_CRCH": "@heygen-api-key-crch",
+    "HEYGEN_API_KEY_WILL": "@HEYGEN_API_KEY_WILL",
+    "HEYGEN_API_KEY_CRCH": "@HEYGEN_API_KEY_CRCH",
     "NEXT_PUBLIC_BASE_API_URL": "https://api.heygen.com"
   }
 }
