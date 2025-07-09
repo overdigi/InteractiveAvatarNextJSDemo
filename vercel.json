@@ -4,10 +4,5 @@
       "src": "package.json",
       "use": "@vercel/next"
     }
-  ],
-  "env": {
-    "HEYGEN_API_KEY_WILL": "@HEYGEN_API_KEY_WILL",
-    "HEYGEN_API_KEY_CRCH": "@HEYGEN_API_KEY_CRCH",
-    "NEXT_PUBLIC_BASE_API_URL": "https://api.heygen.com"
-  }
+  ]
 }
