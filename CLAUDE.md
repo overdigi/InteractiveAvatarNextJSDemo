@@ -29,6 +29,8 @@ npm run lint
 
 需要在 `.env` 檔案中設置以下環境變數：
 - `HEYGEN_API_KEY` - HeyGen API 金鑰
+- `HEYGEN_API_KEY_WILL` - WILL Avatar 專用金鑰
+- `HEYGEN_API_KEY_CRCH` - CRCH Avatar 專用金鑰
 - `NEXT_PUBLIC_BASE_API_URL` - HeyGen API 基礎 URL (選填)
 - `OPENAI_API_KEY` - OpenAI API 金鑰 (選填，用於 OpenAI 功能)
 
@@ -41,9 +43,15 @@ npm run lint
   - `useVoiceChat.ts` - 語音聊天功能
   - `useTextChat.ts` - 文字聊天功能
   - `useMessageHistory.ts` - 訊息記錄管理
+  - `useConnectionQuality.ts` - 連線品質監控
+  - `useConversationState.ts` - 對話狀態管理
+  - `useInterrupt.ts` - 中斷功能
+  - `useSpeakOnly.ts` - 純語音功能
 
 ### 主要元件
 - `InteractiveAvatar.tsx` - 主要 Avatar 介面元件
+- `SimplifiedInteractiveAvatar.tsx` - 簡化版 Avatar 介面
+- `MinimalTextReader.tsx` - 最小化文字閱讀器元件
 - `AvatarSession/` - Avatar 會話相關元件
   - `AvatarVideo.tsx` - 影片播放元件
   - `AvatarControls.tsx` - 控制按鈕
@@ -51,6 +59,10 @@ npm run lint
   - `TextInput.tsx` - 文字輸入
   - `MessageHistory.tsx` - 訊息記錄
 - `AvatarConfig/` - Avatar 配置元件
+- `AvatarSelector.tsx` - Avatar 選擇器
+- `ChatModeSelector.tsx` - 聊天模式選擇器
+- `TextToSpeechOnly.tsx` - 純文字轉語音元件
+- `SimpleTextToSpeech.tsx` - 簡單文字轉語音元件
 
 ### API 路由
 - `/api/get-access-token/route.ts` - 獲取 HeyGen 存取令牌
@@ -81,8 +93,13 @@ npm run lint
 
 ### 檔案結構
 - `app/` - Next.js App Router 檔案
+  - `api/` - API 路由
+  - `lib/` - 共用工具和常數
 - `components/` - 可重用元件
-- `components/logic/` - 狀態管理和業務邏輯 hooks
+  - `AvatarConfig/` - Avatar 配置相關元件
+  - `AvatarSession/` - Avatar 會話相關元件
+  - `logic/` - 狀態管理和業務邏輯 hooks
+- `docs/` - 文件資料
 - `public/` - 靜態資源
 - `styles/` - 全域樣式
 
@@ -105,4 +122,8 @@ npm run lint
 - 傳輸方式：WebSocket
 
 ### 可用 Avatar
-在 `app/lib/constants.ts` 中定義了可用的公開 Avatar 列表，包括治療師、健身教練、醫生等角色。
+在 `app/lib/constants.ts` 中定義了可用的 Avatar 列表：
+- **WILL** - 專業男性助理
+- **CRCH** - 親切女性助理
+
+每個 Avatar 都有對應的 API 金鑰環境變數和語音設定。
