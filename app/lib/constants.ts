@@ -8,7 +8,7 @@ export const AVATARS = [
     description: "專業男性助理",
   },
   {
-    avatar_id: "a9f1b685f79f4bda9a8493430cafce83",
+    avatar_id: "253b320ceb964b87b10c858a7af25348",
     name: "CRCH",
     gender: "female",
     voice_id: "4158cf2ef85d4ccc856aacb1c47dbb0c",
